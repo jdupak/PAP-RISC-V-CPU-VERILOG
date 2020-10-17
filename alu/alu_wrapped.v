@@ -9,9 +9,9 @@ module AluWrapped(
     input [0:0] operand_2_neg,
     output [31:0] res
 );
-    wire [31:0] operand_2 = use_imm ? imm : rs2_val;
+    reg[31:0] operand_2;
 
-    always @ (clk) $display(rs1_val, rs2_val, imm, use_imm, operand_2_neg);
+    always @ (posedge clk) operand_2 = use_imm ? imm : rs2_val;
 
     ALU alu(
         clk,

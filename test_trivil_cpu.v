@@ -22,7 +22,7 @@ module test();
     Decode decode(clk, instruction, op, read_idx_1, read_idx_2, write_idx, use_imm, neg, imm, void[0:0], void[0:0]);
 
     initial begin
-        instruction = 32'b0000000_00010_00001_000_00001_0000100;
+        instruction = 32'b0000000_00010_00001_000_00001_0010000;
         clk = 0;
     end
 

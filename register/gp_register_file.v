@@ -17,7 +17,7 @@ module GPRegisterFile(
 //        $display("GP %d %d %d %d %d", read_idx_1, read_idx_2, write_idx, write_enable, write_data);
         if (write_enable & (write_data != 'b0))
             gp[write_idx] <= write_data;
-        read_data_1 <= gp[read_idx_1];
-        read_data_2 <= gp[read_idx_2];
+        read_data_1 = gp[read_idx_1];
+        read_data_2 = gp[read_idx_2];
     end
 endmodule
