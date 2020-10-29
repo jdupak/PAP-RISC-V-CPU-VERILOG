@@ -1,15 +1,16 @@
-module ProgramCounterLinear(
+module ProgramCounter(
     input [0:0] clk,
-    output [31:0] address
+    input [31:0] jump_address,
+    input [0:0] jump_enable,
+    output reg[31:0] address
 );
-    reg [31:0] current;
-
-    assign address = current;
+    initial address = 'b0;
 
     always @ (posedge clk) begin
-        current = current + 'd4;
-        $display("PC: 0x%h", current);
+        address <= (jump_enable) ? jump_address : address + 'd4;
+
+        $display("====================================================");
+        $display("PC: 0x%h", address);
     end
 
-    initial current = 'b0;
 endmodule

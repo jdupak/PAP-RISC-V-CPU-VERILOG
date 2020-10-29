@@ -15,17 +15,17 @@ module ALU (
     localparam OR   = 'h6;
     localparam AND  = 'h7;
 
-    always @ (posedge clk) begin
+    always @ (a, b, op, mod) begin
         case (op)
             ADD: res = a + b;
             SLL: res = a << b;
-            SLT: res = $signed(a) < $signed(b);
-            SLTU: res = a < b;
+            SLT: res = {{31{1'b0}}, $signed(a) < $signed(b)};
+            SLTU: res = {{31{1'b0}}, a < b};
             XOR: res = a ^ b;
             SR: res = (mod) ? (a >>> b) : (a >> b);
             OR: res = a | b;
             AND: res = a & b;
         endcase
-        $display("ALU: %h -> %h (%h %h)", op, res, a, b);
+        $display("ALU: %h -> (%d %d) = %d", op, a, b, res);
     end
 endmodule

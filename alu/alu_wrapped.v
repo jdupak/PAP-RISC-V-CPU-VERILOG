@@ -9,9 +9,8 @@ module AluWrapped(
     input [0:0] operand_2_neg,
     output [31:0] res
 );
-    reg[31:0] operand_2;
-
-    always @ (posedge clk) operand_2 = use_imm ? imm : rs2_val;
+    wire[31:0] operand_2;
+    assign operand_2 = use_imm ? imm : rs2_val;
 
     ALU alu(
         clk,
