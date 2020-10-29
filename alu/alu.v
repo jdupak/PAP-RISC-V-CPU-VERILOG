@@ -15,9 +15,11 @@ module ALU (
     localparam OR   = 'h6;
     localparam AND  = 'h7;
 
+    initial res = 0;
+
     always @ (a, b, op, mod) begin
         case (op)
-            ADD: res = a + b;
+            ADD: res = a + $signed(b);
             SLL: res = a << b;
             SLT: res = {{31{1'b0}}, $signed(a) < $signed(b)};
             SLTU: res = {{31{1'b0}}, a < b};
@@ -26,6 +28,6 @@ module ALU (
             OR: res = a | b;
             AND: res = a & b;
         endcase
-        $display("ALU: %h -> (%d %d) = %d", op, a, b, res);
+        $display("ALU: %h -> (%d %d) = %d", op, a, $signed(b), $signed(res));
     end
 endmodule

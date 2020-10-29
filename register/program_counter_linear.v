@@ -4,7 +4,7 @@ module ProgramCounterLinear(
 );
     initial begin
         address = 'b0;
-        $display("PC: 0x%h", address);
+        //$display("PC: 0x%h", address);
     end
 
     always @ (posedge clk) begin
