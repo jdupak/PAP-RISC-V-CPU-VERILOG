@@ -1,6 +1,6 @@
 module Decode(
     input [0:0]        clk,
-    input [31:0]       instruction,
+    input [31:0]       _instruction,
     output reg[2:0]    alu_op,
     output reg[4:0]    alu_rs1,
     output reg[4:0]    alu_rs2,
@@ -36,6 +36,10 @@ module Decode(
     reg[4:0] rs1, rs2, rd;
     reg[0:0] imm_sign;
     reg[31:0] I_imm, S_imm, U_imm, B_imm, J_imm;
+    wire[31:0] instruction;
+
+    // Byteswap to fit specification
+    assign instruction[31:0] = {_instruction[7:0], _instruction[15:8], _instruction[23:16], _instruction[31:24]};
 
     initial begin
         alu_op = 'b00;
@@ -167,13 +171,13 @@ module Decode(
                 alu_res_neg = funct3[0];
                 alu_use_imm = 0;
                 alu_rs1_pc = 0;
-                imm = B_imm;
+                imm = B_imm << 1;
                 mem_load = 0;
                 mem_store = 0;
                 write_enable = 0;
                 jump_enable = 1;
                 debug = OK;
-                $display("DEC: Branch");
+                $display("DEC: Branch by %h", $signed(B_imm << 1));
             end
             SYSTEM: begin
                 alu_rs1 = 'b0;
