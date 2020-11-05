@@ -50,8 +50,3 @@ ebreak
 j gcd			# restart
 nop
 .end start
-
-.data
-x0: .word 15
-x1: .word 96
-x2: .word 0

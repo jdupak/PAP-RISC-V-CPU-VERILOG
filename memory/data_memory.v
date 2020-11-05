@@ -10,8 +10,8 @@ module DataMemory(
     assign read_data = mem[idx[9:2]];
 
     initial begin
-        mem[0] = 'd12345;
-        mem[1] = 'd15;
+        mem[0] = `X1;
+        mem[1] = `X2;
     end
 
     always @ (posedge clk) begin
