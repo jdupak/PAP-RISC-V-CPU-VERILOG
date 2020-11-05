@@ -161,7 +161,7 @@ module Decode(
             BRANCH: begin
                 alu_rs1 = rs1;
                 alu_rs2 = rs2;
-                alu_rd = NONE;
+                alu_rd = 'h0;
                 alu_op = {1'b0, funct3[2:1]};
                 alu_rs2_neg = ~funct3[2];
                 alu_res_neg = funct3[0];

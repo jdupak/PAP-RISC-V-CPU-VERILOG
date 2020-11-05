@@ -9,6 +9,11 @@ module DataMemory(
 
     assign read_data = mem[idx[9:2]];
 
+    initial begin
+        mem[1] = 'd15;
+        mem[2] = 'd96;
+    end
+
     always @ (posedge clk) begin
         if (write_enable == 1) begin
             mem[idx[9:2]] <= write_data;

@@ -49,7 +49,6 @@ module test();
             'b01: begin
                 $display("Breakpoint reached");
                 $finish;
-//                $stop;
              end
             'b10: begin
                 $display("Illegal instruction - teminating");
