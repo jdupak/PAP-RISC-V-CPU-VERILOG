@@ -1,0 +1,13 @@
+# DESCRIPTION: Verilator output: Timestamp data for --skip-identical.  Delete at will.
+C "-cc decode/decode.v"
+S   7587448  1613163  1607190055   992100760           1           0 "/nix/store/bxnqpmmq6jq9m4h4vgphcm8vsnk03pwi-verilator-4.100/bin/verilator_bin"
+S      6521    94368  1608030851   823585400  1608030851   823585400 "decode/decode.v"
+T     19081   477699  1608030853   750194900  1608030853   750194900 "obj_dir/Vdecode.cpp"
+T      3088   477632  1608030853   748199800  1608030853   748199800 "obj_dir/Vdecode.h"
+T      1487   477720  1608030853   750990200  1608030853   750990200 "obj_dir/Vdecode.mk"
+T      2290   477638  1608030853   748745400  1608030853   748745400 "obj_dir/Vdecode__Slow.cpp"
+T       544   115001  1608030853   746495800  1608030853   746495800 "obj_dir/Vdecode__Syms.cpp"
+T       794   477620  1608030853   747648100  1608030853   747648100 "obj_dir/Vdecode__Syms.h"
+T       359   477721  1608030853   751168200  1608030853   751168200 "obj_dir/Vdecode__ver.d"
+T         0        0  1608030853   752405100  1608030853   752405100 "obj_dir/Vdecode__verFiles.dat"
+T      1514   477702  1608030853   750617100  1608030853   750617100 "obj_dir/Vdecode_classes.mk"

@@ -9,10 +9,10 @@ module DataMemory(
 
     assign read_data = mem[idx[9:2]];
 
-    initial begin
+/*    initial begin
         mem[0] = `X1;
         mem[1] = `X2;
-    end
+    end*/
 
     always @ (posedge clk) begin
         if (write_enable == 1) begin

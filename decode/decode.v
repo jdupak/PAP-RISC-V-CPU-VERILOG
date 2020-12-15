@@ -1,5 +1,4 @@
 module Decode(
-    input [0:0]        clk,
     input [31:0]       _instruction,
     output reg[2:0]    alu_op,
     output reg[4:0]    alu_rs1,
@@ -30,33 +29,29 @@ module Decode(
 
     localparam NONE   = 'bx;
 
-    reg[4:0] opcode;
-    reg[6:0] funct7;
-    reg[2:0] funct3;
-    reg[4:0] rs1, rs2, rd;
-    reg[0:0] imm_sign;
-    reg[31:0] I_imm, S_imm, U_imm, B_imm, J_imm;
+    wire[4:0] opcode;
+    wire[6:0] funct7;
+    wire[2:0] funct3;
+    wire[4:0] rs1, rs2, rd;
+    wire[0:0] imm_sign;
+    wire[31:0] I_imm, S_imm, U_imm, B_imm, J_imm;
     wire[31:0] instruction;
 
     // Byteswap to fit specification
     assign instruction[31:0] = {_instruction[7:0], _instruction[15:8], _instruction[23:16], _instruction[31:24]};
 
-    initial begin
-        alu_op = 'b00;
-        alu_rs1 = 'b0;
-        alu_rs2 = 'b0;
-        alu_rd = 'b0;
-        alu_use_imm = 0;
-        alu_rs1_pc = 0;
-        alu_rs2_neg = 0;
-        alu_res_neg = 0;
-        imm = NONE;
-        mem_load = 0;
-        mem_store = 0;
-        write_enable = 0;
-        jump_enable = 0;
-        debug = OK;
-    end
+    assign opcode   = instruction[6:2];       // Assuming only 32bit instruction support
+    assign rd       = instruction[11:7];
+    assign funct3   = instruction[14:12];
+    assign rs1      = instruction[19:15];
+    assign rs2      = instruction[24:20];
+    assign funct7   = instruction[31:25];
+    assign imm_sign = instruction[31];
+    assign I_imm    = {{20{imm_sign}}, funct7, rs2};
+    assign S_imm    = {{20{imm_sign}}, funct7, rd};
+    assign U_imm    = {{12{imm_sign}}, funct7, rs2, rs1, funct3};
+    assign B_imm    = {{20{imm_sign}}, imm_sign, instruction[7], instruction[30:25], instruction[11:8]};
+    assign J_imm    = {{13{imm_sign}}, rs1, funct3, instruction[20], instruction[30:21]};
 
     always @ (instruction) begin
         $display("Instruction: %b_%b_%b_%b_%b_%b",
@@ -64,18 +59,6 @@ module Decode(
             instruction[19:15], instruction[14:12],
             instruction[11:7], instruction[6:0]);
 
-        opcode   = instruction[6:2];       // Assuming only 32bit instruction support
-        rd       = instruction[11:7];
-        funct3   = instruction[14:12];
-        rs1      = instruction[19:15];
-        rs2      = instruction[24:20];
-        funct7   = instruction[31:25];
-        imm_sign = instruction[31];
-        I_imm    = {{20{imm_sign}}, funct7, rs2};
-        S_imm    = {{20{imm_sign}}, funct7, rd};
-        U_imm    = {{12{imm_sign}}, funct7, rs2, rs1, funct3};
-        B_imm    = {{20{imm_sign}}, imm_sign, instruction[7], instruction[30:25], instruction[11:8]};
-        J_imm    = {{13{imm_sign}}, rs1, funct3, instruction[20], instruction[30:21]};
 
         case (opcode)
             OP: begin

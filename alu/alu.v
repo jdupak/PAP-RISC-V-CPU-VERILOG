@@ -1,5 +1,4 @@
 module ALU (
-    input [0:0] clk,
     input [31:0] a,
     input [31:0] b,
     input [2:0] op,

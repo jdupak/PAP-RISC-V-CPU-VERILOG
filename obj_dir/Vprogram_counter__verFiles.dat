@@ -1,0 +1,13 @@
+# DESCRIPTION: Verilator output: Timestamp data for --skip-identical.  Delete at will.
+C "-cc register/program_counter.v"
+S   7587448  1613163  1607190055   992100760           1           0 "/nix/store/bxnqpmmq6jq9m4h4vgphcm8vsnk03pwi-verilator-4.100/bin/verilator_bin"
+T      4754   114809  1608030250   206503400  1608030250   206503400 "obj_dir/Vprogram_counter.cpp"
+T      3039   114807  1608030250   204273500  1608030250   204273500 "obj_dir/Vprogram_counter.h"
+T      1532   114811  1608030250   207495800  1608030250   207495800 "obj_dir/Vprogram_counter.mk"
+T      2762   114808  1608030250   205328800  1608030250   205328800 "obj_dir/Vprogram_counter__Slow.cpp"
+T       589   114802  1608030250   202644600  1608030250   202644600 "obj_dir/Vprogram_counter__Syms.cpp"
+T       857   114806  1608030250   203592100  1608030250   203592100 "obj_dir/Vprogram_counter__Syms.h"
+T       442   114812  1608030250   207857300  1608030250   207857300 "obj_dir/Vprogram_counter__ver.d"
+T         0        0  1608030250   210026600  1608030250   210026600 "obj_dir/Vprogram_counter__verFiles.dat"
+T      1550   114810  1608030250   206995100  1608030250   206995100 "obj_dir/Vprogram_counter_classes.mk"
+S       592   472065  1607774148   721802500  1607774148   721802500 "register/program_counter.v"
