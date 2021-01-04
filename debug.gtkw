@@ -1,0 +1,172 @@
+[*]
+[*] GTKWave Analyzer v3.3.107 (w)1999-2020 BSI
+[*] Mon Jan  4 00:50:34 2021
+[*]
+[dumpfile] "/data/Dev/school/pap/hw/test.vcd"
+[dumpfile_mtime] "Mon Jan  4 00:40:12 2021"
+[dumpfile_size] 8609
+[savefile] "/data/Dev/school/pap/hw/debug.gtkw"
+[timestart] 23
+[size] 1910 999
+[pos] -1 -1
+*-1.000000 32 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] test.
+[treeopen] test.s1.
+[treeopen] test.s2.
+[treeopen] test.s2.decode.
+[treeopen] test.s3.
+[treeopen] test.s4.
+[sst_width] 284
+[signals_width] 666
+[sst_expanded] 1
+[sst_vpaned_height] 295
+@29
+test.clk
+@200
+-Stage 1
+@24
+test.s1.pc.address[31:0]
+@22
+test.s1.jump_address[31:0]
+@28
+test.s1.imem.instruction[31:0]
+test.s1.jump_enable
+@22
+test.s1.next_address[31:0]
+@200
+-Stage 2
+@28
+test.s2.instruction[31:0]
+@c00028
+test.s2.decode.decoded[59:0]
+@28
+(0)test.s2.decode.decoded[59:0]
+(1)test.s2.decode.decoded[59:0]
+(2)test.s2.decode.decoded[59:0]
+(3)test.s2.decode.decoded[59:0]
+(4)test.s2.decode.decoded[59:0]
+(5)test.s2.decode.decoded[59:0]
+(6)test.s2.decode.decoded[59:0]
+(7)test.s2.decode.decoded[59:0]
+(8)test.s2.decode.decoded[59:0]
+(9)test.s2.decode.decoded[59:0]
+(10)test.s2.decode.decoded[59:0]
+(11)test.s2.decode.decoded[59:0]
+(12)test.s2.decode.decoded[59:0]
+(13)test.s2.decode.decoded[59:0]
+(14)test.s2.decode.decoded[59:0]
+(15)test.s2.decode.decoded[59:0]
+(16)test.s2.decode.decoded[59:0]
+(17)test.s2.decode.decoded[59:0]
+(18)test.s2.decode.decoded[59:0]
+(19)test.s2.decode.decoded[59:0]
+(20)test.s2.decode.decoded[59:0]
+(21)test.s2.decode.decoded[59:0]
+(22)test.s2.decode.decoded[59:0]
+(23)test.s2.decode.decoded[59:0]
+(24)test.s2.decode.decoded[59:0]
+(25)test.s2.decode.decoded[59:0]
+(26)test.s2.decode.decoded[59:0]
+(27)test.s2.decode.decoded[59:0]
+(28)test.s2.decode.decoded[59:0]
+(29)test.s2.decode.decoded[59:0]
+(30)test.s2.decode.decoded[59:0]
+(31)test.s2.decode.decoded[59:0]
+(32)test.s2.decode.decoded[59:0]
+(33)test.s2.decode.decoded[59:0]
+(34)test.s2.decode.decoded[59:0]
+(35)test.s2.decode.decoded[59:0]
+(36)test.s2.decode.decoded[59:0]
+(37)test.s2.decode.decoded[59:0]
+(38)test.s2.decode.decoded[59:0]
+(39)test.s2.decode.decoded[59:0]
+(40)test.s2.decode.decoded[59:0]
+(41)test.s2.decode.decoded[59:0]
+(42)test.s2.decode.decoded[59:0]
+(43)test.s2.decode.decoded[59:0]
+(44)test.s2.decode.decoded[59:0]
+(45)test.s2.decode.decoded[59:0]
+(46)test.s2.decode.decoded[59:0]
+(47)test.s2.decode.decoded[59:0]
+(48)test.s2.decode.decoded[59:0]
+(49)test.s2.decode.decoded[59:0]
+(50)test.s2.decode.decoded[59:0]
+(51)test.s2.decode.decoded[59:0]
+(52)test.s2.decode.decoded[59:0]
+(53)test.s2.decode.decoded[59:0]
+(54)test.s2.decode.decoded[59:0]
+(55)test.s2.decode.decoded[59:0]
+(56)test.s2.decode.decoded[59:0]
+(57)test.s2.decode.decoded[59:0]
+(58)test.s2.decode.decoded[59:0]
+(59)test.s2.decode.decoded[59:0]
+@1401200
+-group_end
+@22
+test.s2.rd_idx[4:0]
+test.s2.gpr.read_idx_1[4:0]
+test.s2.rs1_val_wire[31:0]
+test.s2.rs1_val[31:0]
+test.s2.gpr.read_idx_2[4:0]
+test.s2.rs2_val_wire[31:0]
+test.s2.rs2_val[31:0]
+@28
+test.s2.alu_op[2:0]
+@200
+-Stage 5 - write back
+@28
+test.s2.mem_load_enable
+@100008028
+test.s2.mem_write_enable
+@200
+-Stage 3
+@100c00028
+test.s3.alu_op[2:0]
+@28
+(0)test.s3.alu_op[2:0]
+(1)test.s3.alu_op[2:0]
+(2)test.s3.alu_op[2:0]
+@1401200
+-group_end
+@22
+test.s3.rs1_val[31:0]
+test.s3.rs1_val[31:0]
+test.s3.rs2_val[31:0]
+test.s3.alu_res_out[31:0]
+test.s3.rs2_val_out[31:0]
+@28
+test.s3.mem_read_enable
+test.s3.mem_write_enable
+@200
+-Out
+@28
+test.s3.mem_read_enable_out
+test.s3.mem_write_enable_out
+@200
+-Stage 4
+@28
+test.s4.mem_read_enable
+@22
+test.s4.mem_read_data[31:0]
+@28
+test.s4.mem_write_enable
+@22
+test.s4.rd_idx[4:0]
+test.s4.alu_res[31:0]
+test.s4.rs2_val[31:0]
+@200
+-To write
+-Stage 4 - out (write to reg)
+@28
+test.s4.write_enable_out
+@22
+test.s4.write_data_out[31:0]
+@200
+-Out
+@28
+test.s2.write_enable
+@22
+test.s2.write_idx[4:0]
+test.s2.write_data[31:0]
+[pattern_trace] 1
+[pattern_trace] 0

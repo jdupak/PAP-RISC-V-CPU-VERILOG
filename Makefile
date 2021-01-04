@@ -8,10 +8,7 @@ endif
 all: gcd sim run
 
 sim:
-	iverilog -DX1=$(X1) -DX2=$(X2) test_pipeline_cpu.v */*.v gcd.bin
-
-check:
-	verilator test_pipeline_cpu.v */*.v gcd.bin
+	iverilog -g2005-sv -Wall -DX1=$(X1) -DX2=$(X2) test_pipeline_cpu.sv */*.sv
 
 gcd:
 	pushd test_src; riscv32-elf-as stein_gcd.S

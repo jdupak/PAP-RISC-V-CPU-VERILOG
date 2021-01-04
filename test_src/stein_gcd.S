@@ -7,6 +7,9 @@ _start:
 # https://en.wikipedia.org/wiki/Binary_GCD_algorithm
 
 gcd:
+nop
+nop
+nop
 lw	 	x1, 0x0(x0)
 lw	 	x2, 0x4(x0)
 beqz 	x1, ret_v    # if x1 == 0 return x2
