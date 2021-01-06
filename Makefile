@@ -13,6 +13,5 @@ sim:
 gcd:
 	pushd test_src; riscv32-elf-as stein_gcd.S
 	riscv32-elf-objcopy --only-section=.text --output-target binary test_src/a.out gcd.bin
-	#riscv32-elf-objcopy --only-section=.text --output-target binary test_src/a.out gcd_data.bin
 run:
 	./a.out

@@ -3,7 +3,7 @@ module Stage1Fetch(
     input wire[0:0] stall,
     input wire [0:0] jump_enable,
     input wire[31:0] jump_address,
-    output reg[31:0] instruction = 'b0,
+    output reg[31:0] instruction = 'b0010011000000000000000000000000, // NOP
     output reg[31:0] next_address = 'b0
 );
     wire [31:0] address, intruction_wire, next_address_wire;

@@ -26,7 +26,7 @@ function ParsedInstruction parse(input Instr intruction);
 endfunction
 
 function DecodeOutput decode(input ParsedInstruction i);
-    decode = 60'bx;
+    decode = 61'bx;
 
     case (i.opcode)
         OP: begin
@@ -43,6 +43,7 @@ function DecodeOutput decode(input ParsedInstruction i);
             decode.mem_store = FALSE;
             decode.reg_write = TRUE;
             decode.jump_enable = FALSE;
+            decode.branch_enable = FALSE;
             decode.debug = OK;
             $display("DEC: ALURegOp %h (%h <= %h %h)", i.funct3, i.rd, i.rs1, i.rs2);
         end
@@ -60,6 +61,7 @@ function DecodeOutput decode(input ParsedInstruction i);
             decode.mem_store = FALSE;
             decode.reg_write = TRUE;
             decode.jump_enable = FALSE;
+            decode.branch_enable = FALSE;
             decode.debug = OK;
             $display("DEC: ALUImmOp %h (%h <= %h %h)", i.funct3, i.rd, i.rs1, i.I_imm);
         end
@@ -77,6 +79,7 @@ function DecodeOutput decode(input ParsedInstruction i);
             decode.mem_store = FALSE;
             decode.reg_write = TRUE;
             decode.jump_enable = FALSE;
+            decode.branch_enable = FALSE;
             decode.debug = OK;
             $display("DEC: Load %h => %h+%h", i.rd, i.rs1, i.I_imm);
         end
@@ -94,6 +97,7 @@ function DecodeOutput decode(input ParsedInstruction i);
             decode.mem_store = TRUE;
             decode.reg_write = FALSE;
             decode.jump_enable = FALSE;
+            decode.branch_enable = FALSE;
             decode.debug = OK;
             $display("DEC: Store %h => %h+%h", i.rs2, i.rs1, i.I_imm);
         end
@@ -111,6 +115,7 @@ function DecodeOutput decode(input ParsedInstruction i);
             decode.mem_store = FALSE;
             decode.reg_write = TRUE;
             decode.jump_enable = TRUE;
+            decode.branch_enable = FALSE;
             decode.debug = OK;
             $display("DEC: Jump %h, %d", i.J_imm, $signed(i.J_imm));
         end
@@ -127,7 +132,8 @@ function DecodeOutput decode(input ParsedInstruction i);
             decode.mem_load = FALSE;
             decode.mem_store = FALSE;
             decode.reg_write = FALSE;
-            decode.jump_enable = TRUE;
+            decode.jump_enable = FALSE;
+            decode.branch_enable = TRUE;
             decode.debug = OK;
             $display("DEC: Branch by %h", $signed(i.B_imm << 1));
         end
@@ -139,6 +145,7 @@ function DecodeOutput decode(input ParsedInstruction i);
             decode.alu_op_mod = FALSE;
             decode.reg_write = FALSE;
             decode.jump_enable = FALSE;
+            decode.branch_enable = FALSE;
             case ({i.funct7, i.rs2, i.rs1, i.funct3, i.rd})
                 25'b0000000_00001_00000_000_00000: decode.debug = BREAK;
                 default: decode.debug = FAIL;
@@ -153,6 +160,7 @@ function DecodeOutput decode(input ParsedInstruction i);
             decode.alu_op_mod = FALSE;
             decode.reg_write = FALSE;
             decode.jump_enable = FALSE;
+            decode.branch_enable = FALSE;
             decode.debug = FAIL;
             $display("DEC: Unknown instruction");
         end
