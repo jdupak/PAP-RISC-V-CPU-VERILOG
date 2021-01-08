@@ -1,6 +1,7 @@
 typedef bit [31:0] Data;
 typedef reg [31:0] DataReg;
 typedef bit [0:0] Clock;
+typedef reg [0:0] ClockReg;
 typedef bit [31:0] Addr;
 typedef reg [31:0] AddrReg;
 typedef bit [31:0] Instr;
@@ -75,7 +76,7 @@ typedef struct packed {
 } ParsedInstruction;
 
 module test ();
-  reg Clock clk;
+  ClockReg clk;
 
   // 1 -> 2
   wire Instr intruction_12;
@@ -83,10 +84,12 @@ module test ();
   // 3 -> 1
   wire Bool jump_enable_31;
   wire Addr jump_address_31;
+  // 2 -> 1
+  Bool should_stall_s1;
 
   Stage1Fetch s1 (
       .clk         (clk),
-      .stall       (1'b0),
+      .stall       (should_stall_s1),
       // 1 -> 2
       .instruction_out (intruction_12),
       .next_address_out(next_address_12),
@@ -127,12 +130,13 @@ module test ();
       .jump_enable_out     (jump_enable_23),
       .branch_enable_out   (branch_enable_23),
       .jump_address_out    (jump_address_23),
-      //_out 4 -> 2
+      // 4 -> 2
       .write_data      (write_data_42),
       .write_idx       (write_idx_42),
       .write_enable    (write_enable_42),
 
-      .debug_out(debug)
+      .debug_out(debug),
+      .should_stall_s1_out(should_stall_s1)
   );
 
   // 3 -> 4

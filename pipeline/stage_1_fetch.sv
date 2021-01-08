@@ -11,6 +11,7 @@ module Stage1Fetch(
 
     ProgramCounter pc(
         .clk(clk),
+        .stall(stall),
         .jump_enable(jump_enable),
         .jump_address(jump_address),
         .address_out(address),

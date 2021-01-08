@@ -1,5 +1,6 @@
 module ProgramCounter(
     input Clock clk,
+    input Bool stall,
     input Bool jump_enable,
     input Addr jump_address,
     output Addr address_out,

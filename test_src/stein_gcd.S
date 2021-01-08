@@ -9,6 +9,7 @@ _start:
 gcd:
 nop
 nop
+nop
 lw	 	x1, 0x0(x0)
 lw	 	x2, 0x4(x0)
 nop
@@ -92,6 +93,8 @@ loop3_end:
 nop
 nop
 sll     x1, x1, x4
+nop
+nop
 ret_u:
 nop
 nop
@@ -100,6 +103,8 @@ nop
 nop
 ebreak
 j gcd			# restart
+nop
+nop
 ret_v:
 nop
 nop
