@@ -92,7 +92,7 @@ module test ();
       .stall       (should_stall_s1),
       // 1 -> 2
       .instruction_out (intruction_12),
-      .next_address_out(next_address_12),
+      .pc_out(next_address_12),
       .jump_enable (jump_enable_31),
       .jump_address(jump_address_31)
   );

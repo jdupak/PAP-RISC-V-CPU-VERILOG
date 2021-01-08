@@ -60,7 +60,7 @@ module Stage2Decode (
     use_imm_out <= (should_stall) ? FALSE : decoded.alu_use_imm;
     rd_idx_out <= (should_stall) ? 'b0 : decoded.alu_rd;
     alu_op_mod_out <= (should_stall) ? FALSE : decoded.alu_op_mod;
-    jump_address_out <= pc + $signed(decoded.imm) - 'd4;
+    jump_address_out <= pc + $signed(decoded.imm);
     jump_enable_out <= (should_stall) ? FALSE : decoded.jump_enable;
     branch_enable_out <= (should_stall) ? FALSE : decoded.branch_enable;
     reg_write_enable_out <= (should_stall) ? FALSE : decoded.reg_write;

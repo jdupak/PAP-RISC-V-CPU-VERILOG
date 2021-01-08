@@ -4,9 +4,9 @@ module Stage1Fetch(
     input Bool jump_enable,
     input Addr jump_address,
     output InstrReg instruction_out = `NOP,
-    output AddrReg next_address_out = 'b0
+    output AddrReg pc_out = 'b0
 );
-    Addr address, next_address_wire;
+    Addr pc_wire;
     Instr intruction_wire;
 
     ProgramCounter pc(
@@ -14,18 +14,17 @@ module Stage1Fetch(
         .stall(stall),
         .jump_enable(jump_enable),
         .jump_address(jump_address),
-        .address_out(address),
-        .next_address_out(next_address_wire)
+        .pc_out(pc_wire)
     );
 
     InstructionMemory imem(
-        .address(address),
+        .address(pc_wire),
         .instruction_out(intruction_wire)
     );
 
     always @(posedge clk) begin
-        instruction_out <= (stall) ? instruction_out : intruction_wire;
-        next_address_out <= (stall) ? next_address_out : next_address_wire;
+        instruction_out <= intruction_wire;
+        pc_out <= pc_wire;
     end
 
 endmodule

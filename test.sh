@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 
 function cpu_gcd_test() {
-
+    export X1=$((${1}))
     export X2=$((${2}))
     export X3=$((${3}))
     res=$(make | rg "MEM: write \[00000008\]" | sed -e "s/MEM: write \[00000008\]=//")
-    if [[ $(echo "$X3 == $res" | bc) ]]; then
+    if [[ $(echo "$X3 == $res" | bc) == 1 ]]; then
         nop=""
         # echo "."
+        # echo "OK - $X1,$X2 => $X3 == $res"
     else
         echo "FAIL! - $X1,$X2 => $X3 != $res"
     fi
 }
 
 cpu_gcd_test 0 0 0
-cpu_gcd_test 1 0 0
-cpu_gcd_test 0 1 0
+cpu_gcd_test 1 0 1
+cpu_gcd_test 0 1 1
 cpu_gcd_test 1 1 1
 cpu_gcd_test 5 5 5
 cpu_gcd_test 5 1 1
