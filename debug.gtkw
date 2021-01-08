@@ -1,18 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.107 (w)1999-2020 BSI
-[*] Wed Jan  6 21:45:00 2021
+[*] Fri Jan  8 17:08:47 2021
 [*]
 [dumpfile] "/data/Dev/school/pap/hw/test.vcd"
-[dumpfile_mtime] "Wed Jan  6 21:44:56 2021"
-[dumpfile_size] 135288
+[dumpfile_mtime] "Fri Jan  8 17:08:40 2021"
+[dumpfile_size] 48113
 [savefile] "/data/Dev/school/pap/hw/debug.gtkw"
-[timestart] 0
+[timestart] 51
 [size] 1910 999
 [pos] -1 -1
-*-2.000000 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.000000 66 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] test.
 [treeopen] test.s1.
 [treeopen] test.s2.
+[treeopen] test.s2.gpr.
 [treeopen] test.s3.
 [treeopen] test.s4.
 [sst_width] 284
@@ -23,25 +24,66 @@
 test.clk
 @200
 -Fetch
-@24
+@421
 test.s1.pc.pc[31:0]
-@28
+@c00028
 test.s1.imem.instruction_out[31:0]
+@28
+(0)test.s1.imem.instruction_out[31:0]
+(1)test.s1.imem.instruction_out[31:0]
+(2)test.s1.imem.instruction_out[31:0]
+(3)test.s1.imem.instruction_out[31:0]
+(4)test.s1.imem.instruction_out[31:0]
+(5)test.s1.imem.instruction_out[31:0]
+(6)test.s1.imem.instruction_out[31:0]
+(7)test.s1.imem.instruction_out[31:0]
+(8)test.s1.imem.instruction_out[31:0]
+(9)test.s1.imem.instruction_out[31:0]
+(10)test.s1.imem.instruction_out[31:0]
+(11)test.s1.imem.instruction_out[31:0]
+(12)test.s1.imem.instruction_out[31:0]
+(13)test.s1.imem.instruction_out[31:0]
+(14)test.s1.imem.instruction_out[31:0]
+(15)test.s1.imem.instruction_out[31:0]
+(16)test.s1.imem.instruction_out[31:0]
+(17)test.s1.imem.instruction_out[31:0]
+(18)test.s1.imem.instruction_out[31:0]
+(19)test.s1.imem.instruction_out[31:0]
+(20)test.s1.imem.instruction_out[31:0]
+(21)test.s1.imem.instruction_out[31:0]
+(22)test.s1.imem.instruction_out[31:0]
+(23)test.s1.imem.instruction_out[31:0]
+(24)test.s1.imem.instruction_out[31:0]
+(25)test.s1.imem.instruction_out[31:0]
+(26)test.s1.imem.instruction_out[31:0]
+(27)test.s1.imem.instruction_out[31:0]
+(28)test.s1.imem.instruction_out[31:0]
+(29)test.s1.imem.instruction_out[31:0]
+(30)test.s1.imem.instruction_out[31:0]
+(31)test.s1.imem.instruction_out[31:0]
+@1401200
+-group_end
 @200
 -Decode
 @28
 test.s2.instruction[31:0]
 @22
+test.s2.gpr.write_idx[4:0]
+test.s2.gpr.write_data[31:0]
+test.s2.gpr.read_idx_1[4:0]
 test.s2.rs1_val_wire[31:0]
+test.s2.gpr.read_idx_2[4:0]
 test.s2.rs2_val_wire[31:0]
 @200
+-HazardUnit
 -Exec
 @28
 test.s3.alu_op[2:0]
 test.s3.alu_op_modified
-@22
+@420
 test.s3.rs1_val[31:0]
 test.s3.rs2_val[31:0]
+@22
 test.s3.imm[31:0]
 @28
 test.s3.use_imm
@@ -103,7 +145,7 @@ test.s4.alu_res[31:0]
 test.s4.rs2_val[31:0]
 @28
 test.s4.mem_load_enable
-@22
+@420
 test.s4.mem_read_data[31:0]
 @28
 test.s4.mem_store_enable
@@ -115,9 +157,8 @@ test.s4.reg_write_enable
 -WB
 @28
 test.s4.write_enable_out
-@23
-test.s4.write_idx_out[4:0]
 @22
+test.s4.write_idx_out[4:0]
 test.s4.write_data_out[31:0]
 [pattern_trace] 1
 [pattern_trace] 0

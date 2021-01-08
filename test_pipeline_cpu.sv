@@ -63,6 +63,7 @@ typedef struct packed {
 } DecodeOutput;
 
 `define NONE 'bx
+`define NOP 'b0010011000000000000000000000000
 
 typedef struct packed {
   bit [4:0] opcode;
@@ -87,8 +88,8 @@ module test ();
       .clk         (clk),
       .stall       (1'b0),
       // 1 -> 2
-      .instruction (intruction_12),
-      .next_address(next_address_12),
+      .instruction_out (intruction_12),
+      .next_address_out(next_address_12),
       .jump_enable (jump_enable_31),
       .jump_address(jump_address_31)
   );
@@ -98,7 +99,7 @@ module test ();
   wire RegId rd_idx_23;
   wire ALUOp alu_op_23;
   wire Bool use_imm_23, alu_op_mod_23, mem_load_enable_23, mem_store_enable_23,
-      reg_write_enable_23, branch_enable_23;
+      reg_write_enable_23, branch_enable_23, jump_enable_23;
   wire Addr jump_address_23;
   // 4 -> 2
   wire Data write_data_42;
@@ -109,30 +110,29 @@ module test ();
 
   Stage2Decode s2 (
       .clk             (clk),
-      .stall           (1'b0),
       // 1 -> 2
       .instruction     (intruction_12),
       .pc              (next_address_12),
-      // 2 -> 3
-      .alu_op          (alu_op_23),
-      .rs1_val         (rs1_val_23),
-      .rs2_val         (rs2_val_23),
-      .rd_idx          (rd_idx_23),
-      .imm             (imm_23),
-      .use_imm         (use_imm_23),
-      .alu_op_mod      (alu_op_mod_23),
-      .mem_load_enable (mem_load_enable_23),
-      .mem_store_enable(mem_store_enable_23),
-      .reg_write_enable(reg_write_enable_23),
-      .jump_enable     (jump_enable_23),
-      .branch_enable   (branch_enable_23),
-      .jump_address    (jump_address_23),
-      // 4 -> 2
+      //_out 2 -> 3
+      .alu_op_out          (alu_op_23),
+      .rs1_val_out         (rs1_val_23),
+      .rs2_val_out         (rs2_val_23),
+      .rd_idx_out          (rd_idx_23),
+      .imm_out             (imm_23),
+      .use_imm_out         (use_imm_23),
+      .alu_op_mod_out      (alu_op_mod_23),
+      .mem_load_enable_out (mem_load_enable_23),
+      .mem_store_enable_out(mem_store_enable_23),
+      .reg_write_enable_out(reg_write_enable_23),
+      .jump_enable_out     (jump_enable_23),
+      .branch_enable_out   (branch_enable_23),
+      .jump_address_out    (jump_address_23),
+      //_out 4 -> 2
       .write_data      (write_data_42),
       .write_idx       (write_idx_42),
       .write_enable    (write_enable_42),
 
-      .debug(debug)
+      .debug_out(debug)
   );
 
   // 3 -> 4
@@ -142,7 +142,6 @@ module test ();
 
   Stage3Exec s3 (
       .clk                 (clk),
-      .stall               (1'b0),
       // 2 -> 3
       .alu_op              (alu_op_23),
       .rs1_val             (rs1_val_23),
@@ -170,7 +169,6 @@ module test ();
 
   Stage4Mem s4 (
       .clk             (clk),
-      .stall           (1'b0),
       // 3 -> 4
       .alu_res         (alu_res_34),
       .rs2_val         (rs2_val_34),

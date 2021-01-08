@@ -1,12 +1,13 @@
 module Stage1Fetch(
-    input wire[0:0] clk,
-    input wire[0:0] stall,
-    input wire [0:0] jump_enable,
-    input wire[31:0] jump_address,
-    output reg[31:0] instruction = 'b0010011000000000000000000000000, // NOP
-    output reg[31:0] next_address = 'b0
+    input Clock clk,
+    input Bool stall,
+    input Bool jump_enable,
+    input Addr jump_address,
+    output InstrReg instruction_out = `NOP,
+    output AddrReg next_address_out = 'b0
 );
-    wire [31:0] address, intruction_wire, next_address_wire;
+    Addr address, next_address_wire;
+    Instr intruction_wire;
 
     ProgramCounter pc(
         .clk(clk),
@@ -21,9 +22,9 @@ module Stage1Fetch(
         .instruction_out(intruction_wire)
     );
 
-    always @(negedge clk) begin
-        instruction <= (stall) ? instruction : intruction_wire;
-        next_address <= (stall) ? next_address : next_address_wire;
+    always @(posedge clk) begin
+        instruction_out <= (stall) ? instruction_out : intruction_wire;
+        next_address_out <= (stall) ? next_address_out : next_address_wire;
     end
 
 endmodule

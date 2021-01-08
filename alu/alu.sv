@@ -7,9 +7,9 @@ module ALU (
 );
     assign res_out = alu(a, b, op, mod);
 
-    always @ (a, b, op, mod) begin
-        $display("ALU: %h -> (%d %d) = %d", op, a, $signed(b), $signed(res_out));
-    end
+    // always @ (a, b, op, mod) begin
+    //     $display("ALU: %h -> (%d %d) = %d", op, a, $signed(b), $signed(res_out));
+    // end
 endmodule
 
 function Data alu(
@@ -18,7 +18,7 @@ function Data alu(
     input Bool mod
 );
     case (op)
-        ADD: alu = a + $signed(b);
+        ADD: alu = a + b;
         SLL: alu = a << b;
         SLT: alu = {{31{1'b0}}, $signed(a) < $signed(b)};
         SLTU: alu = {{31{1'b0}}, a < b};

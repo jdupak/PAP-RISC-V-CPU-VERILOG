@@ -75,6 +75,7 @@ nop
     move    x3, x1
     move    x1, x2
     nop
+    nop
     move  	x2, x3
     nop
     nop
@@ -95,6 +96,7 @@ ret_u:
 nop
 nop
 sw	 	x1, 0x8(x0)
+nop
 nop
 ebreak
 j gcd			# restart

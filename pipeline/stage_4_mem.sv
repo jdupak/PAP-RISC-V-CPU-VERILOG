@@ -1,6 +1,5 @@
 module Stage4Mem(
     input Clock clk,
-    input Bool stall,
     input Data alu_res,
     input Data rs2_val,
     input RegId rd_idx,
@@ -22,8 +21,7 @@ module Stage4Mem(
         .read_data_out(mem_read_data)
     );
 
-    always @(negedge clk) begin
-        // TODO stall
+    always @(posedge clk) begin
         write_enable_out <= reg_write_enable;
         write_idx_out <= rd_idx;
         write_data_out <= (mem_load_enable) ? mem_read_data : alu_res;

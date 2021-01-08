@@ -16,7 +16,7 @@ module DataMemory(
     always @ (posedge clk) begin
         if (write_enable == 1) begin
             mem[idx[9:2]] <= write_data;
-            $display("MEM: write [%h]=%h", idx, write_data);
+            $display("MEM: write [%h]=%d", idx, write_data);
          end
     end
 endmodule

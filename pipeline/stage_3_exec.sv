@@ -1,6 +1,5 @@
 module Stage3Exec (
     input Clock clk,
-    input Bool  stall,
     input ALUOp alu_op,
     input Bool  alu_op_modified,
     input Data  rs1_val,
@@ -34,14 +33,14 @@ module Stage3Exec (
       .res_out(alu_res)
   );
 
-  always @(negedge clk) begin
-    rd_idx_out <= (stall) ? rd_idx_out : rd_idx;
-    rs2_val_out <= (stall) ? rs2_val_out : rs2_val;
-    mem_load_enable_out <= (stall) ? mem_load_enable_out : mem_load_enable;
-    mem_store_enable_out <= (stall) ? mem_store_enable_out : mem_store_enable;
-    reg_write_enable_out <= (stall) ? reg_write_enable_out : reg_write_enable;
-    alu_res_out <= (stall) ? alu_res_out : alu_res;
-    jump_enable_out <= (stall) ? jump_enable_out : (jump_enable || (branch_enable && (alu_op_modified ^ (alu_res == 'b0))));
-    jump_address_out <= (stall) ? jump_address_out : jump_address;
+  always @(posedge clk) begin
+    rd_idx_out <= rd_idx;
+    rs2_val_out <= rs2_val;
+    mem_load_enable_out <= mem_load_enable;
+    mem_store_enable_out <= mem_store_enable;
+    reg_write_enable_out <= reg_write_enable;
+    alu_res_out <= alu_res;
+    jump_enable_out <= (jump_enable || (branch_enable && (alu_op_modified ^ (alu_res == 'b0))));
+    jump_address_out <= jump_address;
   end
 endmodule
