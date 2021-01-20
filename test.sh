@@ -1,18 +1,27 @@
 #!/usr/bin/env bash
 
+# set -Ee pipefail
+
+passed_tests=0
+failed_tests=0
+
 function cpu_gcd_test() {
     export X1=$((${1}))
     export X2=$((${2}))
     export X3=$((${3}))
-    res=$(make | rg "MEM: write \[00000008\]" | sed -e "s/MEM: write \[00000008\]=//")
-    if [[ $(echo "$X3 == $res" | bc) == 1 ]]; then
-        nop=""
+    res=$(make | rg "MEM: write \[00000008\]" | sed -e "s/MEM: write \[00000008\]=//" | head -n 1)
+    res=$(echo "$res"| bc)
+    if [[ "$(echo "$X3 == $res" | bc)" == "1" ]]; then
+        passed_tests="$(($passed_tests + 1))"
         # echo "."
         # echo "OK - $X1,$X2 => $X3 == $res"
     else
+        failed_tests="$(($failed_tests + 1))"
         echo "FAIL! - $X1,$X2 => $X3 != $res"
     fi
 }
+
+echo
 
 cpu_gcd_test 0 0 0
 cpu_gcd_test 1 0 1
@@ -137,4 +146,16 @@ if [[ "${1}" == "-l" ]]; then
     cpu_gcd_test 952438 488843 1
     cpu_gcd_test 802431 363265 7
     cpu_gcd_test 594328 300588 4
+fi
+
+if [[ "$failed_tests" == "0" ]]; then
+    echo "ALL TESTS PASSED ($passed_tests)"
+else
+    echo
+    echo "=============================================="
+    echo
+    echo "  PASSED: $passed_tests"
+    echo "  FAILED: $failed_tests"
+    echo
+    echo "=============================================="
 fi

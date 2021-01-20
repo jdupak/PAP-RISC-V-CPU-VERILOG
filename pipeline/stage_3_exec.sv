@@ -12,7 +12,10 @@ module Stage3Exec (
     input Bool  reg_write_enable,
     input Bool  jump_enable,
     input Bool  branch_enable,
+    input Bool  use_forwared_as_rs1,
+    input Bool  use_forwared_as_rs2,
     input Addr  jump_address,
+    input Data  forwarded_result,
 
     output DataReg  alu_res_out = 'b0,
     output DataReg  rs2_val_out = 'b0,
@@ -21,17 +24,21 @@ module Stage3Exec (
     output DataReg  jump_address_out = 'b0,
     output BoolReg  mem_store_enable_out = FALSE,
     output BoolReg  mem_load_enable_out = FALSE,
-    output BoolReg  reg_write_enable_out = FALSE
+    output BoolReg  reg_write_enable_out = FALSE,
+    output Bool     discard_out
 );
   Data alu_res;
 
   ALU alu (
-      .a      (rs1_val),
-      .b      ((use_imm) ? imm : rs2_val),
+      .a      ((use_forwared_as_rs1) ? forwarded_result : rs1_val),
+      .b      ((use_imm) ? imm : ((use_forwared_as_rs2) ? forwarded_result : rs2_val)),
       .op     (alu_op),
       .mod    (alu_op_modified),
       .res_out(alu_res)
   );
+
+  // Flush pipeline as a result of branch misprediction.
+  assign discard_out = (jump_enable || (branch_enable && (alu_op_modified ^ (alu_res == 'b0))));
 
   always @(posedge clk) begin
     rd_idx_out <= rd_idx;
@@ -40,7 +47,7 @@ module Stage3Exec (
     mem_store_enable_out <= mem_store_enable;
     reg_write_enable_out <= reg_write_enable;
     alu_res_out <= alu_res;
-    jump_enable_out <= (jump_enable || (branch_enable && (alu_op_modified ^ (alu_res == 'b0))));
+    jump_enable_out <= discard_out;
     jump_address_out <= jump_address;
   end
 endmodule

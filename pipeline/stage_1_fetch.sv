@@ -1,6 +1,7 @@
 module Stage1Fetch(
     input Clock clk,
     input Bool stall,
+    input Bool discard,
     input Bool jump_enable,
     input Addr jump_address,
     output InstrReg instruction_out = `NOP,
@@ -23,7 +24,7 @@ module Stage1Fetch(
     );
 
     always @(posedge clk) begin
-        instruction_out <= intruction_wire;
+        instruction_out <= (discard) ? `NOP : intruction_wire;
         pc_out <= pc_wire;
     end
 

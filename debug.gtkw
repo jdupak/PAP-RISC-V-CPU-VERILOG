@@ -1,164 +1,102 @@
 [*]
 [*] GTKWave Analyzer v3.3.107 (w)1999-2020 BSI
-[*] Fri Jan  8 17:08:47 2021
+[*] Wed Jan 20 12:17:11 2021
 [*]
 [dumpfile] "/data/Dev/school/pap/hw/test.vcd"
-[dumpfile_mtime] "Fri Jan  8 17:08:40 2021"
-[dumpfile_size] 48113
+[dumpfile_mtime] "Wed Jan 20 12:16:59 2021"
+[dumpfile_size] 29725
 [savefile] "/data/Dev/school/pap/hw/debug.gtkw"
-[timestart] 51
-[size] 1910 999
+[timestart] 24
+[size] 1142 999
 [pos] -1 -1
-*-2.000000 66 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.000000 30 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] test.
-[treeopen] test.s1.
-[treeopen] test.s2.
-[treeopen] test.s2.gpr.
-[treeopen] test.s3.
-[treeopen] test.s4.
+[treeopen] test.cpu.
+[treeopen] test.cpu.s1.
+[treeopen] test.cpu.s2.
+[treeopen] test.cpu.s2.gpr.
+[treeopen] test.cpu.s3.
+[treeopen] test.cpu.s4.
 [sst_width] 284
-[signals_width] 477
+[signals_width] 406
 [sst_expanded] 1
-[sst_vpaned_height] 558
+[sst_vpaned_height] 557
 @28
+[color] 3
 test.clk
 @200
 -Fetch
-@421
-test.s1.pc.pc[31:0]
-@c00028
-test.s1.imem.instruction_out[31:0]
+@24
+test.cpu.s1.pc.pc_out[31:0]
 @28
-(0)test.s1.imem.instruction_out[31:0]
-(1)test.s1.imem.instruction_out[31:0]
-(2)test.s1.imem.instruction_out[31:0]
-(3)test.s1.imem.instruction_out[31:0]
-(4)test.s1.imem.instruction_out[31:0]
-(5)test.s1.imem.instruction_out[31:0]
-(6)test.s1.imem.instruction_out[31:0]
-(7)test.s1.imem.instruction_out[31:0]
-(8)test.s1.imem.instruction_out[31:0]
-(9)test.s1.imem.instruction_out[31:0]
-(10)test.s1.imem.instruction_out[31:0]
-(11)test.s1.imem.instruction_out[31:0]
-(12)test.s1.imem.instruction_out[31:0]
-(13)test.s1.imem.instruction_out[31:0]
-(14)test.s1.imem.instruction_out[31:0]
-(15)test.s1.imem.instruction_out[31:0]
-(16)test.s1.imem.instruction_out[31:0]
-(17)test.s1.imem.instruction_out[31:0]
-(18)test.s1.imem.instruction_out[31:0]
-(19)test.s1.imem.instruction_out[31:0]
-(20)test.s1.imem.instruction_out[31:0]
-(21)test.s1.imem.instruction_out[31:0]
-(22)test.s1.imem.instruction_out[31:0]
-(23)test.s1.imem.instruction_out[31:0]
-(24)test.s1.imem.instruction_out[31:0]
-(25)test.s1.imem.instruction_out[31:0]
-(26)test.s1.imem.instruction_out[31:0]
-(27)test.s1.imem.instruction_out[31:0]
-(28)test.s1.imem.instruction_out[31:0]
-(29)test.s1.imem.instruction_out[31:0]
-(30)test.s1.imem.instruction_out[31:0]
-(31)test.s1.imem.instruction_out[31:0]
-@1401200
--group_end
+test.cpu.s1.intruction_wire[31:0]
+[color] 1
+test.cpu.s1.discard
+test.cpu.s1.instruction_out[31:0]
+test.cpu.s1.stall
+test.cpu.s1.jump_enable
+@23
+test.cpu.s1.jump_address[31:0]
 @200
 -Decode
 @28
-test.s2.instruction[31:0]
+test.cpu.s2.decode.instruction[31:0]
 @22
-test.s2.gpr.write_idx[4:0]
-test.s2.gpr.write_data[31:0]
-test.s2.gpr.read_idx_1[4:0]
-test.s2.rs1_val_wire[31:0]
-test.s2.gpr.read_idx_2[4:0]
-test.s2.rs2_val_wire[31:0]
+test.cpu.s2.decode.decoded_out[60:0]
+test.cpu.s2.gpr.read_idx_1[4:0]
+test.cpu.s2.gpr.read_data_1_out[31:0]
+test.cpu.s2.gpr.read_data_2_out[31:0]
+test.cpu.s2.gpr.read_idx_2[4:0]
+test.cpu.s2.gpr.read_idx_1[4:0]
+@28
+test.cpu.s2.gpr.write_enable
+@22
+test.cpu.s2.gpr.write_idx[4:0]
+test.cpu.s2.gpr.write_data[31:0]
+@28
+[color] 1
+test.cpu.s2.discard
 @200
--HazardUnit
+-
+@22
+test.cpu.s2.hz.rs2[4:0]
+test.cpu.s2.hz.rs1[4:0]
+test.cpu.s2.hz.rd[4:0]
+test.cpu.s2.hz.last_rd[4:0]
+test.cpu.s2.hz.prelast_rd[4:0]
+@28
+[color] 1
+test.cpu.s2.hz.stall_out
+test.cpu.s2.jump_enable_out
+test.cpu.s2.branch_enable_out
+[color] 5
+test.cpu.s2.hz.fwd1_enable_out
+[color] 5
+test.cpu.s2.hz.fwd2_enable_out
+@200
 -Exec
 @28
-test.s3.alu_op[2:0]
-test.s3.alu_op_modified
-@420
-test.s3.rs1_val[31:0]
-test.s3.rs2_val[31:0]
+test.cpu.s3.alu_op[2:0]
 @22
-test.s3.imm[31:0]
+test.cpu.s3.alu.a[31:0]
+test.cpu.s3.alu.b[31:0]
+test.cpu.s3.alu_res[31:0]
 @28
-test.s3.use_imm
-@22
-test.s3.alu_res[31:0]
-@28
-test.s3.branch_enable
-test.s3.jump_enable
-@22
-test.s3.jump_address[31:0]
-@28
-test.s3.mem_load_enable
-test.s3.mem_store_enable
-test.s3.reg_write_enable
-@22
-test.s3.rd_idx[4:0]
-@28
-test.s3.jump_enable_out
+test.cpu.s3.discard_out
+test.cpu.s3.jump_enable_out
 @200
 -Mem
-@c00022
-test.s4.alu_res[31:0]
-@28
-(0)test.s4.alu_res[31:0]
-(1)test.s4.alu_res[31:0]
-(2)test.s4.alu_res[31:0]
-(3)test.s4.alu_res[31:0]
-(4)test.s4.alu_res[31:0]
-(5)test.s4.alu_res[31:0]
-(6)test.s4.alu_res[31:0]
-(7)test.s4.alu_res[31:0]
-(8)test.s4.alu_res[31:0]
-(9)test.s4.alu_res[31:0]
-(10)test.s4.alu_res[31:0]
-(11)test.s4.alu_res[31:0]
-(12)test.s4.alu_res[31:0]
-(13)test.s4.alu_res[31:0]
-(14)test.s4.alu_res[31:0]
-(15)test.s4.alu_res[31:0]
-(16)test.s4.alu_res[31:0]
-(17)test.s4.alu_res[31:0]
-(18)test.s4.alu_res[31:0]
-(19)test.s4.alu_res[31:0]
-(20)test.s4.alu_res[31:0]
-(21)test.s4.alu_res[31:0]
-(22)test.s4.alu_res[31:0]
-(23)test.s4.alu_res[31:0]
-(24)test.s4.alu_res[31:0]
-(25)test.s4.alu_res[31:0]
-(26)test.s4.alu_res[31:0]
-(27)test.s4.alu_res[31:0]
-(28)test.s4.alu_res[31:0]
-(29)test.s4.alu_res[31:0]
-(30)test.s4.alu_res[31:0]
-(31)test.s4.alu_res[31:0]
-@1401200
--group_end
 @22
-test.s4.rs2_val[31:0]
+test.cpu.s4.alu_res[31:0]
+test.cpu.s4.rs2_val[31:0]
 @28
-test.s4.mem_load_enable
-@420
-test.s4.mem_read_data[31:0]
-@28
-test.s4.mem_store_enable
+test.cpu.s4.mem_load_enable
 @22
-test.s4.rd_idx[4:0]
+test.cpu.s4.dmem.read_data_out[31:0]
+test.cpu.s4.write_idx_out[4:0]
 @28
-test.s4.reg_write_enable
-@200
--WB
-@28
-test.s4.write_enable_out
+test.cpu.s4.mem_store_enable
 @22
-test.s4.write_idx_out[4:0]
-test.s4.write_data_out[31:0]
+test.cpu.s4.dmem.write_data[31:0]
 [pattern_trace] 1
 [pattern_trace] 0
