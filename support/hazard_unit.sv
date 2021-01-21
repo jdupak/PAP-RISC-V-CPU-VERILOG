@@ -9,8 +9,8 @@ module HazardUnit (
     input  RegId rs2,
     input  RegId rd,
     output Bool  stall_out,
-    output Bool fwd1_enable_out,
-    output Bool fwd2_enable_out
+    output Bool  fwd1_enable_out,
+    output Bool  fwd2_enable_out
 );
   // Check last to destinations to be compared with currently required data.
   // Request to zero registers are not a reason to stall, therefore zero

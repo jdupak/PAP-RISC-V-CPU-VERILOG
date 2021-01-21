@@ -30,8 +30,8 @@ module Stage3Exec (
 );
   Data alu_res, rs2_resolved;
 
-  assign rs2_resolved = neg_conditional(
-    (use_forwared_as_rs2) ? forwarded_result : rs2_val, rs2_neg);
+  assign
+      rs2_resolved = neg_conditional((use_forwared_as_rs2) ? forwarded_result : rs2_val, rs2_neg);
 
   ALU alu (
       .a      ((use_forwared_as_rs1) ? forwarded_result : rs1_val),
@@ -56,9 +56,6 @@ module Stage3Exec (
   end
 endmodule
 
-function Data neg_conditional(
-  input Data in,
-  input Bool cond
-);
+function Data neg_conditional(input Data in, input Bool cond);
   neg_conditional = (cond) ? -in : in;
 endfunction

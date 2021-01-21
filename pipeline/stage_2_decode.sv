@@ -1,12 +1,12 @@
 module Stage2Decode (
-    input  Clock       clk,
-    input  Bool        discard,
-    input  Data        instruction,
-    input  Addr        pc,
-    input  Bool        write_enable,
-    input  RegId       write_idx,
-    input  Data        write_data,
-    
+    input Clock clk,
+    input Bool  discard,
+    input Data  instruction,
+    input Addr  pc,
+    input Bool  write_enable,
+    input RegId write_idx,
+    input Data  write_data,
+
     output ALUOpReg    alu_op_out = 'b0,
     output DataReg     rs1_val_out = 'b0,
     output DataReg     rs2_val_out = 'b0,
@@ -50,13 +50,13 @@ module Stage2Decode (
   Bool is_hazard;
 
   HazardUnit hz (
-      .clk      (clk),
-      .rs1      ((decoded.alu_rs1_pc) ? 5'd0 : decoded.alu_rs1), // No hazard when using PC.
-      .rs2      (decoded.alu_rs2),
-      .rd       ((discard || ~decoded.reg_write) ? 5'd0 : decoded.alu_rd),
+      .clk(clk),
+      .rs1((decoded.alu_rs1_pc) ? 5'd0 : decoded.alu_rs1),  // No hazard when using PC.
+      .rs2(decoded.alu_rs2),
+      .rd((discard || ~decoded.reg_write) ? 5'd0 : decoded.alu_rd),
       .stall_out(is_hazard),
-      .fwd1_enable_out  (fwd1_enable_wire),
-      .fwd2_enable_out  (fwd2_enable_wire)
+      .fwd1_enable_out(fwd1_enable_wire),
+      .fwd2_enable_out(fwd2_enable_wire)
   );
 
   assign should_stall = is_hazard | discard;
