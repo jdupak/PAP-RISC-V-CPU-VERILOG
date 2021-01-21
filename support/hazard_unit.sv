@@ -8,7 +8,6 @@ module HazardUnit (
     input  RegId rs1,
     input  RegId rs2,
     input  RegId rd,
-    input  Addr  pc,
     output Bool  stall_out,
     output Bool fwd1_enable_out,
     output Bool fwd2_enable_out

@@ -14,6 +14,7 @@ module Stage3Exec (
     input Bool  branch_enable,
     input Bool  use_forwared_as_rs1,
     input Bool  use_forwared_as_rs2,
+    input Bool  rs2_neg,
     input Addr  jump_address,
     input Data  forwarded_result,
 
@@ -27,11 +28,14 @@ module Stage3Exec (
     output BoolReg  reg_write_enable_out = FALSE,
     output Bool     discard_out
 );
-  Data alu_res;
+  Data alu_res, rs2_resolved;
+
+  assign rs2_resolved = neg_conditional(
+    (use_forwared_as_rs2) ? forwarded_result : rs2_val, rs2_neg);
 
   ALU alu (
       .a      ((use_forwared_as_rs1) ? forwarded_result : rs1_val),
-      .b      ((use_imm) ? imm : ((use_forwared_as_rs2) ? forwarded_result : rs2_val)),
+      .b      ((use_imm) ? imm : rs2_resolved),
       .op     (alu_op),
       .mod    (alu_op_modified),
       .res_out(alu_res)
@@ -42,7 +46,7 @@ module Stage3Exec (
 
   always @(posedge clk) begin
     rd_idx_out <= rd_idx;
-    rs2_val_out <= rs2_val;
+    rs2_val_out <= rs2_resolved;
     mem_load_enable_out <= mem_load_enable;
     mem_store_enable_out <= mem_store_enable;
     reg_write_enable_out <= reg_write_enable;
@@ -51,3 +55,10 @@ module Stage3Exec (
     jump_address_out <= jump_address;
   end
 endmodule
+
+function Data neg_conditional(
+  input Data in,
+  input Bool cond
+);
+  neg_conditional = (cond) ? -in : in;
+endfunction

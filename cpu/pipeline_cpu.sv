@@ -28,7 +28,7 @@ module PipelineCPU (
   wire RegId rd_idx_23;
   wire ALUOp alu_op_23;
   wire Bool use_imm_23, alu_op_mod_23, mem_load_enable_23, mem_store_enable_23, reg_write_enable_23,
-      branch_enable_23, jump_enable_23, fwd1_enable_23, fwd2_enable_23;
+      branch_enable_23, jump_enable_23, fwd1_enable_23, fwd2_enable_23, rs2_neg_23;
   wire Addr jump_address_23;
   // 4 -> 2
   wire Data write_data_42;
@@ -57,6 +57,7 @@ module PipelineCPU (
       .jump_address_out    (jump_address_23),
       .fwd1_enable_out     (fwd1_enable_23),
       .fwd2_enable_out     (fwd2_enable_23),
+      .rs2_neg             (rs2_neg_23),
       // 4 -> 2
       .write_data          (write_data_42),
       .write_idx           (write_idx_42),
@@ -89,6 +90,7 @@ module PipelineCPU (
       .branch_enable(branch_enable_23),
       .use_forwared_as_rs1(fwd1_enable_23),
       .use_forwared_as_rs2(fwd2_enable_23),
+      .rs2_neg(rs2_neg_23),
       // 3 -> 4
       .alu_res_out(alu_res_34),
       .rs2_val_out(rs2_val_34),

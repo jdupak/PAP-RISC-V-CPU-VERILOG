@@ -32,6 +32,7 @@ cpu_gcd_test 5 1 1
 cpu_gcd_test 1 5 1
 cpu_gcd_test 10 5 5
 cpu_gcd_test 21 14 7
+cpu_gcd_test 7 3 1
 cpu_gcd_test 21 7 7
 cpu_gcd_test $((13)) $((13*2)) 13
 cpu_gcd_test $((12358*4*7)) $((12358*9)) 12358

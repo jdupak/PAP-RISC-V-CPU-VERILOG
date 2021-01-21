@@ -27,4 +27,6 @@ function Data alu(
         OR: alu = a | b;
         AND: alu = a & b;
     endcase
+
+    if (op == ADD) $display("DBG::ALU\t%d\t%d\t%d\t%d\t%d", op, a, b, mod, alu);
 endfunction

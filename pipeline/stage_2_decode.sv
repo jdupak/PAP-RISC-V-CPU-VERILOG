@@ -6,9 +6,11 @@ module Stage2Decode (
     input  Bool        write_enable,
     input  RegId       write_idx,
     input  Data        write_data,
+    
     output ALUOpReg    alu_op_out = 'b0,
     output DataReg     rs1_val_out = 'b0,
     output DataReg     rs2_val_out = 'b0,
+    output BoolReg     rs2_neg = FALSE,
     output DataReg     imm_out = 'b0,
     output BoolReg     use_imm_out = FALSE,
     output RegIdReg    rd_idx_out = 'b0,
@@ -49,22 +51,22 @@ module Stage2Decode (
 
   HazardUnit hz (
       .clk      (clk),
-      .rs1      (decoded.alu_rs1),
+      .rs1      ((decoded.alu_rs1_pc) ? 5'd0 : decoded.alu_rs1), // No hazard when using PC.
       .rs2      (decoded.alu_rs2),
       .rd       ((discard || ~decoded.reg_write) ? 5'd0 : decoded.alu_rd),
-      .pc       (pc),
       .stall_out(is_hazard),
       .fwd1_enable_out  (fwd1_enable_wire),
       .fwd2_enable_out  (fwd2_enable_wire)
   );
 
   assign should_stall = is_hazard | discard;
-  assign should_stall_s1_out = is_hazard;
+  assign should_stall_s1_out = should_stall;
 
   always @(posedge clk) begin
     alu_op_out <= (should_stall) ? ADD : decoded.alu_op;
     rs1_val_out <= (should_stall) ? 'b0 : ((decoded.alu_rs1_pc) ? pc : rs1_val_wire);
-    rs2_val_out <= (should_stall) ? 'b0 : ((decoded.alu_rs2_neg) ? -rs2_val_wire : rs2_val_wire);
+    rs2_val_out <= (should_stall) ? 'b0 : rs2_val_wire;
+    rs2_neg <= (should_stall) ? FALSE : decoded.alu_rs2_neg;
     imm_out <= decoded.imm;
     use_imm_out <= (should_stall) ? FALSE : decoded.alu_use_imm;
     rd_idx_out <= (should_stall) ? 'b0 : decoded.alu_rd;
